@@ -33,9 +33,22 @@ export default function Home() {
     const inputUmur = new FormData(event.target).get("umur_c");
     const inputNama = new FormData(event.target).get("nama");
     const inputGender = new FormData(event.target).get("gender");
-    const message = `Gender: ${inputGender}\nNama: ${inputNama}\nUmur: ${inputUmur}\nSaya ingin informasi tentang asuransi MSIG Life`;
-    const whatsappURL = `https://wa.me/+6287782255389?text=${encodeURIComponent(message)}`;
-    window.location.href = whatsappURL;
+    const message = `Gender: ${inputGender}\nNama: ${inputNama}\nUmur: ${inputUmur}\nHai, saya mau info mengenai asuransi kesehatan/jiwa MSIG Life`;
+    const whatsappURL = `https://wa.me/+6287782255389?text=${encodeURIComponent(
+      message
+    )}`;
+    window.open(whatsappURL, "_blank");
+  };
+
+  const handleClick = (e, targetId) => {
+    e.preventDefault();
+    const offset = 80; // Adjust this value according to your navbar height
+    const element = document.getElementById(targetId);
+    const elementPosition = element.offsetTop - offset;
+    window.scrollTo({
+      top: elementPosition,
+      behavior: 'smooth'
+    });
   };
   return (
     <>
@@ -47,85 +60,193 @@ export default function Home() {
         <meta name="keywords" content="premi" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <Navbar />
+      <Navbar handleClick={handleClick} />
       <main className="">
-        <section
-          className="container mx-auto px-5 xl:px-32 cek-premi py-10 flex flex-col gap-8 items-center justify-center"
-          id="cek-premi"
-        >
-          <h1 className="text-center font-semibold text-2xl">
-            Cek Premi Asuransi Kesehatan Anda Dan Keluarga
-          </h1>
-          <div className="flex justify-center">
-            <img
-              width={200}
-              height={200}
-              className="lg:w-[300px]"
-              src="/images/logo.jpg"
-              alt=""
-            />
-          </div>
-          <p className="text-sm text-gray-500 text-center">
-            Asuransi Kesehatan dengan premi lebih Hemat dengan perlindungan
-            Maksimal.
-          </p>
-          <form
-            className="w-full flex flex-col gap-8"
-            onSubmit={(event) => handleSubmit(event)}
+        <section id="cek-premi">
+          <div
+            className="relative flex bg-[url('/images/banner.jpg')] bg-cover bg-center h-[550px]"
+            style={{
+              backgroundImage:
+                'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url("/images/banner.jpg")',
+            }}
           >
-            <div className="relative w-full">
-              <input
-                type="text"
-                id="umur"
-                name="umur"
-                className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 border bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                placeholder=" "
-                required
-              />
-              <label
-                htmlFor="umur"
-                className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
-              >
-                Umur
-              </label>
+            <div className="container mx-auto px-5 xl:px-32 py-20">
+              <div className="w-full md:w-[80%] lg:w-[56%]">
+                <div>
+                  <div className="text-4xl lg:text-5xl font-bold mb-8 text-white">
+                    Memberikan pelayanan Terbaik dan Terpercaya <br />
+                    di setiap waktu
+                  </div>
+                  <p className="text-white mb-8">
+                    Kami siap menjawab semua pertanyaan Anda seputar asuransi,
+                    didukung dengan AI Agent kami yang dapat membantu menjawab
+                    semua pertanyaan Anda, atau Anda juga dapat langsung
+                    menghubungi kami.
+                  </p>
+                  <div className="flex gap-5">
+                    <button
+                    onClick={(e) => handleClick(e, 'contact-us')}
+                      className="bg-blue-700 hover:bg-blue-600 text-white font-semibold text-lg px-5 py-2 rounded-lg"
+                    >
+                      Contact Us
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
-            <button
-              type="submit"
-              className="px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 capitalize text-white font-semibold w-full"
+          </div>
+          <div className="container mx-auto px-5 xl:px-32 cek-premi py-10 flex flex-col gap-8 items-center justify-center">
+            <h1 className="text-center font-semibold text-2xl">
+              Cek Premi Asuransi Kesehatan Anda Dan Keluarga
+            </h1>
+            <div className="flex justify-center">
+              <img
+                width={200}
+                height={200}
+                className="lg:w-[300px]"
+                src="/images/logo.jpg"
+                alt=""
+              />
+            </div>
+            <p className="text-sm text-gray-500 text-center">
+              Asuransi Kesehatan dengan premi lebih Hemat dengan perlindungan
+              Maksimal.
+            </p>
+            <form
+              className="w-full flex flex-col gap-8"
+              onSubmit={(event) => handleSubmit(event)}
             >
-              Cek Premi
-            </button>
-          </form>
+              <div className="relative w-full">
+                <input
+                  type="text"
+                  id="umur"
+                  name="umur"
+                  className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 border bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                  required
+                />
+                <label
+                  htmlFor="umur"
+                  className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
+                >
+                  Umur
+                </label>
+              </div>
+              <button
+                type="submit"
+                className="px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 capitalize text-white font-semibold w-full"
+              >
+                Cek Premi
+              </button>
+            </form>
 
-          {umur ? (
-            filteredData.length > 0 ? (
-              <>
-                <div className="relative overflow-x-auto hidden md:block w-full xl:w-3/4">
-                  <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
-                    <thead className="text-xs text-gray-700 uppercase bg-gray-50  ">
-                      <tr>
-                        <th scope="col" className="px-6 py-3 text-center">
-                          Plan
-                        </th>
-                        <th scope="col" className="px-6 py-3 text-center">
-                          Pria
-                        </th>
-                        <th scope="col" className="px-6 py-3 text-center">
-                          Wanita
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {filteredData.map((item, index) => (
-                        <tr className="bg-white border-b">
-                          <th
-                            scope="row"
-                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center w-[10%]"
-                          >
-                            {item.plan}
+            {umur ? (
+              filteredData.length > 0 ? (
+                <>
+                  <div className="relative overflow-x-auto hidden md:block w-full xl:w-3/4">
+                    <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
+                      <thead className="text-xs text-gray-700 uppercase bg-gray-50  ">
+                        <tr>
+                          <th scope="col" className="px-6 py-3 text-center">
+                            Plan
                           </th>
-                          <td className="px-2 w-[45%] py-4">
-                            <div className="bg-white px-6 py-4 border rounded-sm">
+                          <th scope="col" className="px-6 py-3 text-center">
+                            Pria
+                          </th>
+                          <th scope="col" className="px-6 py-3 text-center">
+                            Wanita
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {filteredData.map((item, index) => (
+                          <tr className="bg-white border-b">
+                            <th
+                              scope="row"
+                              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center w-[10%]"
+                            >
+                              {item.plan}
+                            </th>
+                            <td className="px-2 w-[45%] py-4">
+                              <div className="bg-white px-6 py-4 border rounded-sm">
+                                <div className="font-medium text-gray-900 whitespace-nowrap italic">
+                                  {" "}
+                                  Premi/bulan: {formatRupiah(item.male_price)}
+                                  /bulan
+                                </div>
+                                <div className="font-medium text-gray-900 whitespace-nowrap italic">
+                                  {" "}
+                                  Premi/tahun:{" "}
+                                  {formatRupiah(item.male_price * 12)}/tahun
+                                </div>
+                                <div>Coverage: {item.coverage}</div>
+                                <div>Class: {item.class}</div>
+                                <div>Limit Tahunan: {item.limit_tahunan}</div>
+                                <div>Limit Booster: {item.limit_booster}</div>
+                                <div>
+                                  Biaya Pendamping: {item.biaya_pendamping}
+                                </div>
+                              </div>
+                            </td>
+                            <td className="px-2 w-[45%] py-4">
+                              <div className="bg-white px-6 py-4 border rounded-sm">
+                                <div className="font-medium text-gray-900 whitespace-nowrap italic">
+                                  {" "}
+                                  Premi/bulan: {formatRupiah(item.female_price)}
+                                  /bulan
+                                </div>
+                                <div className="font-medium text-gray-900 whitespace-nowrap italic">
+                                  {" "}
+                                  Premi/tahun:{" "}
+                                  {formatRupiah(item.female_price * 12)}/tahun
+                                </div>
+                                <div> Coverage: {item.coverage}</div>
+                                <div>Class: {item.class}</div>
+                                <div>Limit Tahunan: {item.limit_tahunan}</div>
+                                <div> Limit Booster: {item.limit_booster}</div>
+                                <div>
+                                  Biaya Pendamping: {item.biaya_pendamping}
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className="block md:hidden">
+                    <ul class="flex md:hidden flex-wrap text-sm font-medium text-center text-gray-500 dark:text-gray-400">
+                      <li class="me-2">
+                        <div
+                          className={`${
+                            category == "pria"
+                              ? "text-white bg-blue-600"
+                              : "hover:text-gray-900 hover:bg-gray-100"
+                          } inline-block px-4 py-3 rounded-lg active cursor-pointer`}
+                          aria-current="page"
+                          onClick={() => setCategory("pria")}
+                        >
+                          Pria
+                        </div>
+                      </li>
+                      <li class="me-2">
+                        <div
+                          className={`${
+                            category == "wanita"
+                              ? "text-white bg-blue-600"
+                              : "hover:text-gray-900 hover:bg-gray-100"
+                          } inline-block px-4 py-3 rounded-lg active cursor-pointer`}
+                          onClick={() => setCategory("wanita")}
+                        >
+                          Wanita
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                      <>
+                        <div className={`${category == "pria" ? "grid" : "hidden"} md:hidden grid-cols-1 sm:grid-cols-2 gap-5 w-full`}>
+                          {filteredData.map((item, index) => (
+                            <div className="text-left px-6 py-4 border flex flex-col gap-3">
                               <div className="font-medium text-gray-900 whitespace-nowrap italic">
                                 {" "}
                                 Premi/bulan: {formatRupiah(item.male_price)}
@@ -134,19 +255,25 @@ export default function Home() {
                               <div className="font-medium text-gray-900 whitespace-nowrap italic">
                                 {" "}
                                 Premi/tahun:{" "}
-                                {formatRupiah(item.male_price * 12)}/tahun
+                                {formatRupiah(item.male_price * 12)}
+                                /tahun
                               </div>
-                              <div>Coverage: {item.coverage}</div>
+                              <div> Coverage: {item.coverage}</div>
                               <div>Class: {item.class}</div>
                               <div>Limit Tahunan: {item.limit_tahunan}</div>
-                              <div>Limit Booster: {item.limit_booster}</div>
+                              <div> Limit Booster: {item.limit_booster}</div>
                               <div>
+                                {" "}
                                 Biaya Pendamping: {item.biaya_pendamping}
                               </div>
                             </div>
-                          </td>
-                          <td className="px-2 w-[45%] py-4">
-                            <div className="bg-white px-6 py-4 border rounded-sm">
+                          ))}
+                        </div>
+                      </>
+                      <>
+                        <div className={`${category == "wanita" ? "grid" : "hidden"} md:hidden grid-cols-1 sm:grid-cols-2 gap-5 w-full`}>
+                          {filteredData.map((item, index) => (
+                            <div className="text-left px-6 py-4 border flex flex-col gap-3">
                               <div className="font-medium text-gray-900 whitespace-nowrap italic">
                                 {" "}
                                 Premi/bulan: {formatRupiah(item.female_price)}
@@ -162,108 +289,19 @@ export default function Home() {
                               <div>Limit Tahunan: {item.limit_tahunan}</div>
                               <div> Limit Booster: {item.limit_booster}</div>
                               <div>
+                                {" "}
                                 Biaya Pendamping: {item.biaya_pendamping}
                               </div>
                             </div>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-                <div className="block md:hidden">
-                  <ul class="flex md:hidden flex-wrap text-sm font-medium text-center text-gray-500 dark:text-gray-400">
-                    <li class="me-2">
-                      <a
-                        href="#"
-                        className={`${
-                          category == "pria"
-                            ? "text-white bg-blue-600"
-                            : "hover:text-gray-900 hover:bg-gray-100"
-                        } inline-block px-4 py-3 rounded-lg active`}
-                        aria-current="page"
-                        onClick={() => setCategory("pria")}
-                      >
-                        Pria
-                      </a>
-                    </li>
-                    <li class="me-2">
-                      <a
-                        href="#"
-                        className={`${
-                          category == "wanita"
-                            ? "text-white bg-blue-600"
-                            : "hover:text-gray-900 hover:bg-gray-100"
-                        } inline-block px-4 py-3 rounded-lg active`}
-                        onClick={() => setCategory("wanita")}
-                      >
-                        Wanita
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                {category ? (
-                  category == "pria" ? (
-                    <>
-                      <div className="grid md:hidden grid-cols-1 sm:grid-cols-2 gap-5 w-full">
-                        {filteredData.map((item, index) => (
-                          <div className="text-left px-6 py-4 border flex flex-col gap-3">
-                            <div className="font-medium text-gray-900 whitespace-nowrap italic">
-                              {" "}
-                              Premi/bulan: {formatRupiah(item.male_price)}
-                              /bulan
-                            </div>
-                            <div className="font-medium text-gray-900 whitespace-nowrap italic">
-                              {" "}
-                              Premi/tahun: {formatRupiah(item.male_price * 12)}
-                              /tahun
-                            </div>
-                            <div> Coverage: {item.coverage}</div>
-                            <div>Class: {item.class}</div>
-                            <div>Limit Tahunan: {item.limit_tahunan}</div>
-                            <div> Limit Booster: {item.limit_booster}</div>
-                            <div>
-                              {" "}
-                              Biaya Pendamping: {item.biaya_pendamping}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </>
-                  ) : (
-                    <>
-                      <div className="grid md:hidden grid-cols-1 sm:grid-cols-2 gap-5 w-full">
-                        {filteredData.map((item, index) => (
-                          <div className="text-left px-6 py-4 border flex flex-col gap-3">
-                            <div className="font-medium text-gray-900 whitespace-nowrap italic">
-                              {" "}
-                              Premi/bulan: {formatRupiah(item.female_price)}
-                              /bulan
-                            </div>
-                            <div className="font-medium text-gray-900 whitespace-nowrap italic">
-                              {" "}
-                              Premi/tahun:{" "}
-                              {formatRupiah(item.female_price * 12)}/tahun
-                            </div>
-                            <div> Coverage: {item.coverage}</div>
-                            <div>Class: {item.class}</div>
-                            <div>Limit Tahunan: {item.limit_tahunan}</div>
-                            <div> Limit Booster: {item.limit_booster}</div>
-                            <div>
-                              {" "}
-                              Biaya Pendamping: {item.biaya_pendamping}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </>
-                  )
-                ) : null}
-              </>
-            ) : (
-              <>Data tidak ditemukan</>
-            )
-          ) : null}
+                          ))}
+                        </div>
+                      </>
+                </>
+              ) : (
+                <>Data tidak ditemukan</>
+              )
+            ) : null}
+          </div>
         </section>
         <section className="bg-blue-600 text-white about-us" id="about-us">
           <div className="container mx-auto px-5 xl:px-32 py-10 flex flex-col gap-8">

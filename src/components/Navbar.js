@@ -1,8 +1,9 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { HambergerMenu } from "iconsax-react";
 
-const Navbar = () => {
+const Navbar = ({handleClick}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
 
@@ -33,30 +34,19 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleClick = (e, targetId) => {
-    e.preventDefault();
-    const offset = 80; // Adjust this value according to your navbar height
-    const element = document.getElementById(targetId);
-    const elementPosition = element.offsetTop - offset;
-    window.scrollTo({
-      top: elementPosition,
-      behavior: 'smooth'
-    });
-  };
-
   return (
     <header className="sticky top-0 bg-white z-[9999]">
       <nav className="border-b-2">
         <div className="container mx-auto px-5 xl:px-32">
           <div className="flex items-center justify-between py-5">
             <div>
-              <Image src="/images/logo-sm.png" width={32} height={32} alt="logo" />
+              <img src="/images/logo-sm.png" width={32} height={32} alt="logo" />
             </div>
             <div
               className="block md:hidden cursor-pointer select-none"
               onClick={() => setIsOpen(!isOpen)}
             >
-              Icon
+              <HambergerMenu size="24" color="#555555"/>
             </div>
             <div className="hidden md:flex gap-10 justify-center">
               {navList.map((item, index) => (
