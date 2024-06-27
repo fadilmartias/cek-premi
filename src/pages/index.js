@@ -169,7 +169,7 @@ export default function Home() {
                       </thead>
                       <tbody>
                         {filteredData.map((item, index) => (
-                          <tr className="bg-white border-b">
+                          <tr className="bg-white border-b" key={index}>
                             <th
                               scope="row"
                               className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center w-[10%]"
@@ -259,7 +259,7 @@ export default function Home() {
                       } md:hidden grid-cols-1 sm:grid-cols-2 gap-5 w-full`}
                     >
                       {filteredData.map((item, index) => (
-                        <div className="text-left px-6 py-4 border flex flex-col gap-3">
+                        <div className="text-left px-6 py-4 border flex flex-col gap-3" key={index}>
                           <div className="font-medium text-gray-900 whitespace-nowrap">
                             Plan: {item.plan}
                           </div>
@@ -287,7 +287,7 @@ export default function Home() {
                       } md:hidden grid-cols-1 sm:grid-cols-2 gap-5 w-full`}
                     >
                       {filteredData.map((item, index) => (
-                        <div className="text-left px-6 py-4 border flex flex-col gap-3">
+                        <div className="text-left px-6 py-4 border flex flex-col gap-3" key={index}>
                           <div className="font-medium text-gray-900 whitespace-nowrap">
                             Plan: {item.plan}
                           </div>
