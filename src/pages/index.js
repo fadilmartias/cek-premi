@@ -260,13 +260,14 @@ export default function Home() {
                     >
                       {filteredData.map((item, index) => (
                         <div className="text-left px-6 py-4 border flex flex-col gap-3">
+                          <div className="font-medium text-gray-900 whitespace-nowrap">
+                            Plan: {item.plan}
+                          </div>
                           <div className="font-medium text-gray-900 whitespace-nowrap italic">
-                            {" "}
                             Premi/bulan: {formatRupiah(item.male_price)}
                             /bulan
                           </div>
                           <div className="font-medium text-gray-900 whitespace-nowrap italic">
-                            {" "}
                             Premi/tahun: {formatRupiah(item.male_price * 12)}
                             /tahun
                           </div>
@@ -287,13 +288,14 @@ export default function Home() {
                     >
                       {filteredData.map((item, index) => (
                         <div className="text-left px-6 py-4 border flex flex-col gap-3">
+                          <div className="font-medium text-gray-900 whitespace-nowrap">
+                            Plan: {item.plan}
+                          </div>
                           <div className="font-medium text-gray-900 whitespace-nowrap italic">
-                            {" "}
                             Premi/bulan: {formatRupiah(item.female_price)}
                             /bulan
                           </div>
                           <div className="font-medium text-gray-900 whitespace-nowrap italic">
-                            {" "}
                             Premi/tahun: {formatRupiah(item.female_price * 12)}
                             /tahun
                           </div>
@@ -365,17 +367,16 @@ export default function Home() {
             <h2 className="text-2xl font-semibold">Contact Us</h2>
             <div className="h-1 mt-5 bg-slate-800 rounded-md w-[50px]"></div>
             <div className="content flex flex-col sm:grid grid-cols-2 gap-5">
-              
               <form
                 className="flex flex-col gap-5 pt-7"
                 onSubmit={handleSubmitContactUs}
               >
                 <p className="">
-                Jangan ragu untuk menghubungi saya, Ascor, atau tim kami di
-                Cekpremi.my.id untuk informasi lebih lanjut atau konsultasi
-                gratis. Kami siap membantu Anda melangkah menuju masa depan yang
-                lebih terjamin.
-              </p>
+                  Jangan ragu untuk menghubungi saya, Ascor, atau tim kami di
+                  Cekpremi.my.id untuk informasi lebih lanjut atau konsultasi
+                  gratis. Kami siap membantu Anda melangkah menuju masa depan
+                  yang lebih terjamin.
+                </p>
                 <select
                   id="gender"
                   name="gender"
@@ -418,21 +419,23 @@ export default function Home() {
                   </label>
                 </div>
                 <div className="btn-group flex justify-between gap-5">
-                <button
-                  type="submit"
-                  className="px-4 py-2 rounded-lg flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 capitalize text-white font-semibold w-full"
-                >
-                  <Whatsapp size="28" color="#FFF"/>
-                  Hubungi Kami Via WhatsApp
-                </button>
-                <button
-                  type="button"
-                  onClick={() => window.open('https://instagram.com/ascor.msiglife')}
-                  className="px-4 py-2 rounded-lg flex items-center justify-center gap-3 bg-ig-gradient text-white font-semibold w-1/3"
-                >
-                  <Instagram size="28" color="#FFF"/>
-                  @ascor.msiglife
-                </button>
+                  <button
+                    type="submit"
+                    className="px-4 py-2 rounded-lg flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 capitalize text-white font-semibold w-full"
+                  >
+                    <Whatsapp size="28" color="#FFF" />
+                    Hubungi Kami Via WhatsApp
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      window.open("https://instagram.com/ascor.msiglife")
+                    }
+                    className="px-4 py-2 rounded-lg flex items-center justify-center gap-3 bg-ig-gradient text-white font-semibold w-1/3"
+                  >
+                    <Instagram size="28" color="#FFF" />
+                    @ascor.msiglife
+                  </button>
                 </div>
               </form>
               <div className="flex justify-center items-center">
