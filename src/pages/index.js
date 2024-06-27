@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { formatRupiah } from "@/helpers/helper";
 import Head from "next/head";
 import { redirect } from "next/navigation";
+import { Instagram, Whatsapp } from "iconsax-react";
 
 export default function Home() {
   const [data, setData] = useState(premiData);
@@ -34,7 +35,7 @@ export default function Home() {
     const inputNama = new FormData(event.target).get("nama");
     const inputGender = new FormData(event.target).get("gender");
     const message = `Gender: ${inputGender}\nNama: ${inputNama}\nUmur: ${inputUmur}\nHai, saya mau info mengenai asuransi kesehatan/jiwa MSIG Life`;
-    const whatsappURL = `https://wa.me/+6287782255389?text=${encodeURIComponent(
+    const whatsappURL = `https://wa.me/+6281918880181?text=${encodeURIComponent(
       message
     )}`;
     window.open(whatsappURL, "_blank");
@@ -47,7 +48,7 @@ export default function Home() {
     const elementPosition = element.offsetTop - offset;
     window.scrollTo({
       top: elementPosition,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   };
   return (
@@ -74,18 +75,26 @@ export default function Home() {
               <div className="w-full md:w-[80%] lg:w-[56%]">
                 <div>
                   <div className="text-4xl lg:text-5xl font-bold mb-8 text-white">
-                    Memberikan pelayanan Terbaik dan Terpercaya <br />
-                    di setiap waktu
+                    Selamat datang di Cekpremi.my.id
                   </div>
-                  <p className="text-white mb-8">
-                    Kami siap menjawab semua pertanyaan Anda seputar asuransi,
-                    didukung dengan AI Agent kami yang dapat membantu menjawab
-                    semua pertanyaan Anda, atau Anda juga dapat langsung
-                    menghubungi kami.
+                  <p className="text-white mb-4">
+                    Saya, Ascor, sebagai agen MSIG Life, siap membantu Anda
+                    dalam menjelajahi beragam produk asuransi yang transparan
+                    dan sesuai dengan kebutuhan Anda.
                   </p>
+                  <p className="text-white mb-4">
+                    Di Cekpremi.my.id, kami tidak hanya menyediakan fitur cek
+                    premi asuransi secara langsung untuk membandingkan
+                    produk-produk MSIG Life, tetapi juga menawarkan bantuan dan
+                    konsultasi personal dari tim profesional berpengalaman di
+                    industri asuransi. Tujuan kami adalah menjadi mitra
+                    terpercaya dalam perencanaan keuangan dan perlindungan masa
+                    depan Anda.
+                  </p>
+
                   <div className="flex gap-5">
                     <button
-                    onClick={(e) => handleClick(e, 'contact-us')}
+                      onClick={(e) => handleClick(e, "contact-us")}
                       className="bg-blue-700 hover:bg-blue-600 text-white font-semibold text-lg px-5 py-2 rounded-lg"
                     >
                       Contact Us
@@ -215,8 +224,8 @@ export default function Home() {
                     </table>
                   </div>
                   <div className="block md:hidden">
-                    <ul class="flex md:hidden flex-wrap text-sm font-medium text-center text-gray-500 dark:text-gray-400">
-                      <li class="me-2">
+                    <ul className="flex md:hidden flex-wrap text-sm font-medium text-center text-gray-500 dark:text-gray-400">
+                      <li className="me-2">
                         <div
                           className={`${
                             category == "pria"
@@ -229,7 +238,7 @@ export default function Home() {
                           Pria
                         </div>
                       </li>
-                      <li class="me-2">
+                      <li className="me-2">
                         <div
                           className={`${
                             category == "wanita"
@@ -243,59 +252,60 @@ export default function Home() {
                       </li>
                     </ul>
                   </div>
-                      <>
-                        <div className={`${category == "pria" ? "grid" : "hidden"} md:hidden grid-cols-1 sm:grid-cols-2 gap-5 w-full`}>
-                          {filteredData.map((item, index) => (
-                            <div className="text-left px-6 py-4 border flex flex-col gap-3">
-                              <div className="font-medium text-gray-900 whitespace-nowrap italic">
-                                {" "}
-                                Premi/bulan: {formatRupiah(item.male_price)}
-                                /bulan
-                              </div>
-                              <div className="font-medium text-gray-900 whitespace-nowrap italic">
-                                {" "}
-                                Premi/tahun:{" "}
-                                {formatRupiah(item.male_price * 12)}
-                                /tahun
-                              </div>
-                              <div> Coverage: {item.coverage}</div>
-                              <div>Class: {item.class}</div>
-                              <div>Limit Tahunan: {item.limit_tahunan}</div>
-                              <div> Limit Booster: {item.limit_booster}</div>
-                              <div>
-                                {" "}
-                                Biaya Pendamping: {item.biaya_pendamping}
-                              </div>
-                            </div>
-                          ))}
+                  <>
+                    <div
+                      className={`${
+                        category == "pria" ? "grid" : "hidden"
+                      } md:hidden grid-cols-1 sm:grid-cols-2 gap-5 w-full`}
+                    >
+                      {filteredData.map((item, index) => (
+                        <div className="text-left px-6 py-4 border flex flex-col gap-3">
+                          <div className="font-medium text-gray-900 whitespace-nowrap italic">
+                            {" "}
+                            Premi/bulan: {formatRupiah(item.male_price)}
+                            /bulan
+                          </div>
+                          <div className="font-medium text-gray-900 whitespace-nowrap italic">
+                            {" "}
+                            Premi/tahun: {formatRupiah(item.male_price * 12)}
+                            /tahun
+                          </div>
+                          <div> Coverage: {item.coverage}</div>
+                          <div>Class: {item.class}</div>
+                          <div>Limit Tahunan: {item.limit_tahunan}</div>
+                          <div> Limit Booster: {item.limit_booster}</div>
+                          <div> Biaya Pendamping: {item.biaya_pendamping}</div>
                         </div>
-                      </>
-                      <>
-                        <div className={`${category == "wanita" ? "grid" : "hidden"} md:hidden grid-cols-1 sm:grid-cols-2 gap-5 w-full`}>
-                          {filteredData.map((item, index) => (
-                            <div className="text-left px-6 py-4 border flex flex-col gap-3">
-                              <div className="font-medium text-gray-900 whitespace-nowrap italic">
-                                {" "}
-                                Premi/bulan: {formatRupiah(item.female_price)}
-                                /bulan
-                              </div>
-                              <div className="font-medium text-gray-900 whitespace-nowrap italic">
-                                {" "}
-                                Premi/tahun:{" "}
-                                {formatRupiah(item.female_price * 12)}/tahun
-                              </div>
-                              <div> Coverage: {item.coverage}</div>
-                              <div>Class: {item.class}</div>
-                              <div>Limit Tahunan: {item.limit_tahunan}</div>
-                              <div> Limit Booster: {item.limit_booster}</div>
-                              <div>
-                                {" "}
-                                Biaya Pendamping: {item.biaya_pendamping}
-                              </div>
-                            </div>
-                          ))}
+                      ))}
+                    </div>
+                  </>
+                  <>
+                    <div
+                      className={`${
+                        category == "wanita" ? "grid" : "hidden"
+                      } md:hidden grid-cols-1 sm:grid-cols-2 gap-5 w-full`}
+                    >
+                      {filteredData.map((item, index) => (
+                        <div className="text-left px-6 py-4 border flex flex-col gap-3">
+                          <div className="font-medium text-gray-900 whitespace-nowrap italic">
+                            {" "}
+                            Premi/bulan: {formatRupiah(item.female_price)}
+                            /bulan
+                          </div>
+                          <div className="font-medium text-gray-900 whitespace-nowrap italic">
+                            {" "}
+                            Premi/tahun: {formatRupiah(item.female_price * 12)}
+                            /tahun
+                          </div>
+                          <div> Coverage: {item.coverage}</div>
+                          <div>Class: {item.class}</div>
+                          <div>Limit Tahunan: {item.limit_tahunan}</div>
+                          <div> Limit Booster: {item.limit_booster}</div>
+                          <div> Biaya Pendamping: {item.biaya_pendamping}</div>
                         </div>
-                      </>
+                      ))}
+                    </div>
+                  </>
                 </>
               ) : (
                 <>Data tidak ditemukan</>
@@ -310,34 +320,9 @@ export default function Home() {
               <div className="h-1 my-5 bg-white rounded-md w-[50px]"></div>
               <div className="content">
                 <div className="flex flex-col gap-5">
-                  <p className="leading-6">
-                    Selamat datang di Cekpremi.my.id, tempatnya untuk akses
-                    mudah dan informasi yang jelas seputar produk-produk
-                    asuransi. Saya, Ascor, sebagai agen MSIG Life, siap membantu
-                    Anda dalam menjelajahi beragam produk asuransi yang
-                    transparan dan sesuai dengan kebutuhan Anda.
-                  </p>
-
-                  <p className="leading-6">
-                    Di Cekpremi.my.id, kami tidak hanya menyediakan fitur cek
-                    premi asuransi secara langsung untuk membandingkan
-                    produk-produk MSIG Life, tetapi juga menawarkan bantuan dan
-                    konsultasi personal dari tim profesional berpengalaman di
-                    industri asuransi. Tujuan kami adalah menjadi mitra
-                    terpercaya dalam perencanaan keuangan dan perlindungan masa
-                    depan Anda.
-                  </p>
-
-                  <p className="leading-6">
-                    Jangan ragu untuk menghubungi saya, Ascor, atau tim kami di
-                    Cekpremi.my.id untuk informasi lebih lanjut atau konsultasi
-                    gratis. Kami siap membantu Anda melangkah menuju masa depan
-                    yang lebih terjamin.
-                  </p>
-
-                  <h5 className="text-lg font-semibold">
+                  {/* <h5 className="text-lg font-semibold">
                     SEKILAS TENTANG MSIG LIFE
-                  </h5>
+                  </h5> */}
 
                   <p className="leading-6">
                     PT MSIG Life Insurance Indonesia Tbk (juga dikenal sebagai
@@ -378,16 +363,23 @@ export default function Home() {
         >
           <div className="contact-us" id="contact-us">
             <h2 className="text-2xl font-semibold">Contact Us</h2>
-            <div className="h-1 my-5 bg-slate-800 rounded-md w-[50px]"></div>
+            <div className="h-1 mt-5 bg-slate-800 rounded-md w-[50px]"></div>
             <div className="content flex flex-col sm:grid grid-cols-2 gap-5">
+              
               <form
-                class="flex flex-col gap-5 pt-7"
+                className="flex flex-col gap-5 pt-7"
                 onSubmit={handleSubmitContactUs}
               >
+                <p className="">
+                Jangan ragu untuk menghubungi saya, Ascor, atau tim kami di
+                Cekpremi.my.id untuk informasi lebih lanjut atau konsultasi
+                gratis. Kami siap membantu Anda melangkah menuju masa depan yang
+                lebih terjamin.
+              </p>
                 <select
                   id="gender"
                   name="gender"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
                   <option selected>Gender</option>
                   <option value="Pria">Pria</option>
@@ -425,12 +417,23 @@ export default function Home() {
                     Umur
                   </label>
                 </div>
+                <div className="btn-group flex justify-between gap-5">
                 <button
                   type="submit"
-                  className="px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 capitalize text-white font-semibold w-full"
+                  className="px-4 py-2 rounded-lg flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 capitalize text-white font-semibold w-full"
                 >
-                  Hubungi Kami
+                  <Whatsapp size="28" color="#FFF"/>
+                  Hubungi Kami Via WhatsApp
                 </button>
+                <button
+                  type="button"
+                  onClick={() => window.open('https://instagram.com/ascor.msiglife')}
+                  className="px-4 py-2 rounded-lg flex items-center justify-center gap-3 bg-ig-gradient text-white font-semibold w-1/3"
+                >
+                  <Instagram size="28" color="#FFF"/>
+                  @ascor.msiglife
+                </button>
+                </div>
               </form>
               <div className="flex justify-center items-center">
                 <img src="/images/help.svg" alt="" />

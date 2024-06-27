@@ -21,7 +21,7 @@ const Navbar = ({handleClick}) => {
 
       sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        const offset = section.id == 'contact-us' ? 390 : 150;
+        const offset = section.id == 'contact-us' ? 450 : 150;
         if (window.scrollY >= sectionTop - offset) {
           currentSection = section.getAttribute('id');
         }
