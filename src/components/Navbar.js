@@ -57,7 +57,7 @@ const Navbar = ({handleClick}) => {
                 </div>
               ))}
             </div>
-            <button className="hidden md:flex px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 capitalize text-white font-semibold">
+            <button className="hidden md:flex px-4 py-2 rounded-lg bg-blue-500 hover:bg-blue-600 capitalize text-white font-semibold" onClick={(e) => window.open("https://wa.me/6281918880181")}>
               Chat with us
             </button>
           </div>
