@@ -51,13 +51,21 @@ export default function Home() {
       behavior: "smooth",
     });
   };
+
+  const handleClickSayaMau = (data, type) => {
+    const message = `Hai, saya mau info mengenai asuransi kesehatan/jiwa MSIG Life plan ${data.plan} untuk ${type} dengan umur ${umur} dan harga per bulannya sebesar ${type === 'pria' ? formatRupiah(data.male_price) : formatRupiah(data.female_price)}`;
+    const whatsappURL = `https://wa.me/+6281918880181?text=${encodeURIComponent(
+      message
+    )}`;
+    window.open(whatsappURL, "_blank");
+  };
   return (
     <>
       <Head>
         <title>Cek Premi Asuransi Kesehatan</title>
         <meta name="description" content="Premi" />
-        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
+        <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
         <meta name="keywords" content="premi" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
@@ -65,14 +73,14 @@ export default function Home() {
       <main className="">
         <section id="cek-premi">
           <div
-            className="relative flex bg-[url('/images/banner.jpg')] bg-cover bg-center h-[550px]"
+            className="relative flex bg-[url('/images/banner.jpg')] bg-cover  bg-left h-[550px]"
             style={{
               backgroundImage:
-                'linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url("/images/banner.jpg")',
+                'linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.6)), url("/images/banner.jpg")',
             }}
           >
-            <div className="container mx-auto px-5 xl:px-32 py-20">
-              <div className="w-full md:w-[80%] lg:w-[56%]">
+            <div className="container flex justify-center mx-auto px-5 xl:px-32 py-20">
+              <div className="w-full  md:w-[80%] lg:w-[56%]">
                 <div>
                   <div className="text-4xl lg:text-5xl font-bold mb-8 text-white">
                     Selamat datang di Cekpremi.my.id
@@ -122,7 +130,7 @@ export default function Home() {
               Maksimal.
             </p>
             <form
-              className="w-full flex flex-col gap-8"
+              className="w-1/2 flex flex-col gap-8 "
               onSubmit={(event) => handleSubmit(event)}
             >
               <div className="relative w-full">
@@ -132,13 +140,14 @@ export default function Home() {
                   name="umur"
                   className="block px-2.5 pb-2.5 pt-4 w-full text-sm text-gray-900 border bg-transparent rounded-lg border-1 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
+                  onc
                   required
                 />
                 <label
                   htmlFor="umur"
                   className="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto start-1"
                 >
-                  Umur
+                  Masukkan umur Anda
                 </label>
               </div>
               <button
@@ -155,14 +164,23 @@ export default function Home() {
                   <div className="relative overflow-x-auto hidden md:block w-full xl:w-3/4">
                     <table className="w-full text-sm text-left rtl:text-right text-gray-500 ">
                       <thead className="text-xs text-gray-700 uppercase bg-gray-50  ">
-                        <tr>
-                          <th scope="col" className="px-6 py-3 text-center">
+                        <tr className="border-y">
+                          <th
+                            scope="col"
+                            className="px-6 py-3 text-center border-r border-l"
+                          >
                             Plan
                           </th>
-                          <th scope="col" className="px-6 py-3 text-center">
+                          <th
+                            scope="col"
+                            className="px-6 py-3 text-center border-r"
+                          >
                             Pria
                           </th>
-                          <th scope="col" className="px-6 py-3 text-center">
+                          <th
+                            scope="col"
+                            className="px-6 py-3 text-center border-r"
+                          >
                             Wanita
                           </th>
                         </tr>
@@ -172,12 +190,12 @@ export default function Home() {
                           <tr className="bg-white border-b" key={index}>
                             <th
                               scope="row"
-                              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center w-[10%]"
+                              className="px-6 py-4 border-r border-l font-medium text-gray-900 whitespace-nowrap text-center w-[10%]"
                             >
                               {item.plan}
                             </th>
-                            <td className="px-2 w-[45%] py-4">
-                              <div className="bg-white px-6 py-4 border rounded-sm">
+                            <td className="px-2 w-[45%] py-4 border-r">
+                              <div className="bg-white px-6 py-4 rounded-sm">
                                 <div className="font-medium text-gray-900 whitespace-nowrap italic">
                                   {" "}
                                   Premi/bulan: {formatRupiah(item.male_price)}
@@ -186,7 +204,7 @@ export default function Home() {
                                 <div className="font-medium text-gray-900 whitespace-nowrap italic">
                                   {" "}
                                   Premi/tahun:{" "}
-                                  {formatRupiah(item.male_price * 12)}/tahun
+                                  {formatRupiah(item.male_price * 10)}/tahun
                                 </div>
                                 <div>Coverage: {item.coverage}</div>
                                 <div>Class: {item.class}</div>
@@ -195,10 +213,13 @@ export default function Home() {
                                 <div>
                                   Biaya Pendamping: {item.biaya_pendamping}
                                 </div>
+                                <button onClick={() => handleClickSayaMau(item, 'pria')} className="mt-3 px-4 py-2 rounded-lg flex justify-center items-center bg-blue-500 hover:bg-blue-600 capitalize text-white font-semibold w-full">
+                                  Saya mau ini
+                                </button>
                               </div>
                             </td>
-                            <td className="px-2 w-[45%] py-4">
-                              <div className="bg-white px-6 py-4 border rounded-sm">
+                            <td className="px-2 w-[45%] py-4 border-r">
+                              <div className="bg-white px-6 py-4 rounded-sm">
                                 <div className="font-medium text-gray-900 whitespace-nowrap italic">
                                   {" "}
                                   Premi/bulan: {formatRupiah(item.female_price)}
@@ -207,7 +228,7 @@ export default function Home() {
                                 <div className="font-medium text-gray-900 whitespace-nowrap italic">
                                   {" "}
                                   Premi/tahun:{" "}
-                                  {formatRupiah(item.female_price * 12)}/tahun
+                                  {formatRupiah(item.female_price * 10)}/tahun
                                 </div>
                                 <div> Coverage: {item.coverage}</div>
                                 <div>Class: {item.class}</div>
@@ -216,6 +237,9 @@ export default function Home() {
                                 <div>
                                   Biaya Pendamping: {item.biaya_pendamping}
                                 </div>
+                                <button onClick={() => handleClickSayaMau(item, 'wanita')} className="mt-3 px-4 py-2 rounded-lg flex justify-center items-center bg-blue-500 hover:bg-blue-600 capitalize text-white font-semibold w-full">
+                                  Saya mau ini
+                                </button>
                               </div>
                             </td>
                           </tr>
@@ -259,7 +283,10 @@ export default function Home() {
                       } md:hidden grid-cols-1 sm:grid-cols-2 gap-5 w-full`}
                     >
                       {filteredData.map((item, index) => (
-                        <div className="text-left px-6 py-4 border flex flex-col gap-3" key={index}>
+                        <div
+                          className="text-left px-6 py-4 border flex flex-col gap-3"
+                          key={index}
+                        >
                           <div className="font-medium text-gray-900 whitespace-nowrap">
                             Plan: {item.plan}
                           </div>
@@ -268,7 +295,7 @@ export default function Home() {
                             /bulan
                           </div>
                           <div className="font-medium text-gray-900 whitespace-nowrap italic">
-                            Premi/tahun: {formatRupiah(item.male_price * 12)}
+                            Premi/tahun: {formatRupiah(item.male_price * 10)}
                             /tahun
                           </div>
                           <div> Coverage: {item.coverage}</div>
@@ -276,6 +303,9 @@ export default function Home() {
                           <div>Limit Tahunan: {item.limit_tahunan}</div>
                           <div> Limit Booster: {item.limit_booster}</div>
                           <div> Biaya Pendamping: {item.biaya_pendamping}</div>
+                          <button onClick={() => handleClickSayaMau(item, 'pria')} className="mt-3 px-4 py-2 rounded-lg flex justify-center items-center bg-blue-500 hover:bg-blue-600 capitalize text-white font-semibold w-full">
+                            Saya mau ini
+                          </button>
                         </div>
                       ))}
                     </div>
@@ -287,7 +317,10 @@ export default function Home() {
                       } md:hidden grid-cols-1 sm:grid-cols-2 gap-5 w-full`}
                     >
                       {filteredData.map((item, index) => (
-                        <div className="text-left px-6 py-4 border flex flex-col gap-3" key={index}>
+                        <div
+                          className="text-left px-6 py-4 border flex flex-col gap-3"
+                          key={index}
+                        >
                           <div className="font-medium text-gray-900 whitespace-nowrap">
                             Plan: {item.plan}
                           </div>
@@ -296,7 +329,7 @@ export default function Home() {
                             /bulan
                           </div>
                           <div className="font-medium text-gray-900 whitespace-nowrap italic">
-                            Premi/tahun: {formatRupiah(item.female_price * 12)}
+                            Premi/tahun: {formatRupiah(item.female_price * 10)}
                             /tahun
                           </div>
                           <div> Coverage: {item.coverage}</div>
@@ -304,6 +337,9 @@ export default function Home() {
                           <div>Limit Tahunan: {item.limit_tahunan}</div>
                           <div> Limit Booster: {item.limit_booster}</div>
                           <div> Biaya Pendamping: {item.biaya_pendamping}</div>
+                          <button onClick={() => handleClickSayaMau(item, 'wanita')} className="mt-3 px-4 py-2 rounded-lg flex justify-center items-center bg-blue-500 hover:bg-blue-600 capitalize text-white font-semibold w-full">
+                            Saya mau ini
+                          </button>
                         </div>
                       ))}
                     </div>
@@ -418,23 +454,23 @@ export default function Home() {
                     Umur
                   </label>
                 </div>
-                <div className="btn-group flex justify-between gap-5">
+                <div className="btn-group flex gap-5">
                   <button
                     type="submit"
                     className="px-4 py-2 rounded-lg flex items-center justify-center gap-3 bg-green-500 hover:bg-green-600 capitalize text-white font-semibold w-full"
                   >
                     <Whatsapp size="28" color="#FFF" />
-                    Hubungi Kami Via WhatsApp
+                    Contact Us
                   </button>
                   <button
                     type="button"
                     onClick={() =>
                       window.open("https://instagram.com/ascor.msiglife")
                     }
-                    className="px-4 py-2 rounded-lg flex items-center justify-center gap-3 bg-ig-gradient text-white font-semibold w-1/3"
+                    className="px-4 py-2 rounded-lg flex items-center justify-center gap-3 bg-ig-gradient text-white font-semibold w-full"
                   >
-                    <Instagram size="28" color="#FFF" />
-                    @ascor.msiglife
+                    <Instagram className="text-[0.75rem]" color="#FFF" />
+                    Follow Us
                   </button>
                 </div>
               </form>
